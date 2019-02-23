@@ -1,0 +1,1 @@
+sum-up-numbers-simple([],0). % Case 0: sum is 0 when list is empty.
