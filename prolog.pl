@@ -5,3 +5,7 @@ sum-up-numbers-simple(L,N):- % Case 1: first element is a number.
     \+ (B=[]), % check if rest of list is not empty.
     sum-up-numbers-simple(B,N1), % compute sum of the rest of the list.
     N is A + N1. % sum is first element plus the sum of the remainder of the list.
+sum-up-numbers-simple(L,N):- % Case 2: first element is not a number.
+    L = [A|B],
+    \+ (number(A)),
+    sum-up-numbers-simple(B,N). % result is sum of the remainder of the list.
