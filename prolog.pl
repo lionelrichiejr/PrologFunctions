@@ -13,4 +13,45 @@ sum-up-numbers-simple(L,N):- % Case 3: end of list is reached
     L = [A|B],  
     number(A), 
     B=[], 
-    N is A. 
+    N is A.
+
+sum-up-numbers-general([],0). % Default: list is empty
+sum-up-numbers-general(L,N):-
+    L=[A|B],
+    \+(is_list(A)), % is A a list?
+    number(A),% is A number?
+    \+(B=[]),
+    sum-up-numbers-general(B,N1),
+    N is N1 + A.
+sum-up-numbers-general(L,N):-
+    L=[A|B],
+    \+(is_list(A)),
+    \+(number(A)),
+    \+(B=[]),
+    sum-up-numbers-general(B,N1),
+    N is N1.
+sum-up-numbers-general(L,N):-
+    L=[A|B],
+    is_list(A),
+    sum-up-numbers-general(A,N1),
+    \+(B=[]),
+    sum-up-numbers-general(B,N2),
+    N is N1 + N2.
+sum-up-numbers-general(L,N):-
+    L=[A|B],
+    is_list(A),
+    sum-up-numbers-general(A,N1),
+    B=[],
+    N is N1.
+sum-up-numbers-general(L,N):-
+    L=[A|B],
+    \+(is_list(A)),
+    number(A),
+    B=[],
+    N is A.
+sum-up-numbers-general(L,N):-
+    L=[A|B],
+    \+(is_list(A)),
+    \+(number(A)),
+    B=[],
+    N is 0.
