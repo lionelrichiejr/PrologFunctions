@@ -9,3 +9,8 @@ sum-up-numbers-simple(L,N):- % Case 2: first element is not a number.
     L = [A|B],
     \+ (number(A)),
     sum-up-numbers-simple(B,N). % result is sum of the remainder of the list.
+sum-up-numbers-simple(L,N):- % Case 3: end of list is reached 
+    L = [A|B],  
+    number(A), 
+    B=[], 
+    N is A. 
